@@ -28,7 +28,6 @@ var cartaGui = {
     }
 }
 
-
 var cartaMaquina
 var cartaJogador
 var cartas = [cartaPaulo, cartaRafa, cartaGui]
@@ -37,7 +36,6 @@ var cartas = [cartaPaulo, cartaRafa, cartaGui]
 function sortearCarta() {
     var numeroCartaMaquina = parseInt(Math.random() * 3)
     cartaMaquina = cartas[numeroCartaMaquina]
-
     var numeroCartaJogador = parseInt(Math.random() * 3)
     while (numeroCartaJogador == numeroCartaMaquina) {
         numeroCartaJogador = parseInt(Math.random() * 3)
@@ -49,19 +47,16 @@ function sortearCarta() {
 }
 
 function exibeCartaJogador(){
-  var divCartaJogador = document.getElementById("carta-jogador")
-  var moldura = '<img src="https://www.alura.com.br/assets/img/imersoes/dev-2021/card-super-trunfo-transparent.png" style=" width: inherit; height: inherit; position: absolute;">'
-  divCartaJogador.style.backgroundImage=`url(${cartaJogador.imagem})`
-  var nome = `<p class="carta-subtitle">${cartaJogador.nome}</p>`
-  var opcoesTexto = ""
-  
-  for (var atributo in cartaJogador.atributos) {
-    opcoesTexto += "<input type='radio' name='atributo' value='" + atributo + "'>" + atributo + " " + cartaJogador.atributos[atributo] + "<br>"
-}
-  
-  var html = "<div id='opcoes' class='carta-status --spacing'>"
-  
-  divCartaJogador.innerHTML = moldura+nome+html+opcoesTexto+'<div>'
+    var divCartaJogador = document.getElementById("carta-jogador")
+    var moldura = '<img src="https://www.alura.com.br/assets/img/imersoes/dev-2021/card-super-trunfo-transparent.png" style=" width: inherit; height: inherit; position: absolute;">'
+    divCartaJogador.style.backgroundImage=`url(${cartaJogador.imagem})`
+    var nome = `<p class="carta-subtitle">${cartaJogador.nome}</p>`
+    var opcoesTexto = ""
+    for (var atributo in cartaJogador.atributos) {
+        opcoesTexto += "<input type='radio' name='atributo' value='" + atributo + "'>" + atributo + " " + cartaJogador.atributos[atributo] + "<br>"
+    }
+    var html = "<div id='opcoes' class='carta-status --spacing'>"
+    divCartaJogador.innerHTML = moldura+nome+html+opcoesTexto+'<div>'
 }
 
 function obtemAtributoSelecionado() {
@@ -74,33 +69,29 @@ function obtemAtributoSelecionado() {
 }
 
 function jogar() {
-  var divResultado = document.getElementById("resultado")
+    var divResultado = document.getElementById("resultado")
     var atributoSelecionado = obtemAtributoSelecionado()
 
     if (cartaJogador.atributos[atributoSelecionado] > cartaMaquina.atributos[atributoSelecionado]) {
       htmlResultado = '<p class="resultado-final">Venceu!</p>'  
-      
     } else if (cartaJogador.atributos[atributoSelecionado] < cartaMaquina.atributos[atributoSelecionado]) {
       htmlResultado = '<p class="resultado-final">Perdeu!</p>'  
     } else {
       htmlResultado = '<p class="resultado-final">Empatou!</p>'  
     }
-  divResultado.innerHTML = htmlResultado
-  exibeCartaMaquina()
+    divResultado.innerHTML = htmlResultado
+    exibeCartaMaquina()
 }
 
 function exibeCartaMaquina(){
-  var divCartaMaquina = document.getElementById("carta-maquina")
-  var moldura = '<img src="https://www.alura.com.br/assets/img/imersoes/dev-2021/card-super-trunfo-transparent.png" style=" width: inherit; height: inherit; position: absolute;">'
-  divCartaMaquina.style.backgroundImage=`url(${cartaMaquina.imagem})`
-  var nome = `<p class="carta-subtitle">${cartaMaquina.nome}</p>`
-  var opcoesTexto = ""
-  
-  for (var atributo in cartaMaquina.atributos) {
-    opcoesTexto += "<p type='text' name='atributo' value='" + atributo + "'>" + atributo + " " + cartaMaquina.atributos[atributo] + "<br>"
-}
-  
-  var html = "<div id='opcoes' class='carta-status'>"
-  
-  divCartaMaquina.innerHTML = moldura+nome+html+opcoesTexto+'<div>'
+    var divCartaMaquina = document.getElementById("carta-maquina")
+    var moldura = '<img src="https://www.alura.com.br/assets/img/imersoes/dev-2021/card-super-trunfo-transparent.png" style=" width: inherit; height: inherit; position: absolute;">'
+    divCartaMaquina.style.backgroundImage=`url(${cartaMaquina.imagem})`
+    var nome = `<p class="carta-subtitle">${cartaMaquina.nome}</p>`
+    var opcoesTexto = ""
+    for (var atributo in cartaMaquina.atributos) {
+        opcoesTexto += "<p type='text' name='atributo' value='" + atributo + "'>" + atributo + " " + cartaMaquina.atributos[atributo] + "<br>" 
+    }
+    var html = "<div id='opcoes' class='carta-status --spacing'>"
+    divCartaMaquina.innerHTML = moldura+nome+html+opcoesTexto+'<div>'
 }
